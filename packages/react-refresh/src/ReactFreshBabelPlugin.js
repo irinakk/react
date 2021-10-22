@@ -485,7 +485,7 @@ export default function(babel, opts = {}) {
               break;
             case 'ExportNamedDeclaration':
               insertAfterPath = path.parentPath;
-              programPath = insertAfterPath.parentPath;
+              programPath = path.findParent((p) => t.isProgram(p.parent)).parentPath;
               break;
             case 'ExportDefaultDeclaration':
               insertAfterPath = path.parentPath;
@@ -686,7 +686,7 @@ export default function(babel, opts = {}) {
             break;
           case 'ExportNamedDeclaration':
             insertAfterPath = path.parentPath;
-            programPath = insertAfterPath.parentPath;
+            programPath = path.findParent((p) => t.isProgram(p.parent)).parentPath;
             break;
           case 'ExportDefaultDeclaration':
             insertAfterPath = path.parentPath;

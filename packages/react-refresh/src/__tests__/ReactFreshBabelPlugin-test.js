@@ -537,3 +537,14 @@ describe('ReactFreshBabelPlugin', () => {
     ).toMatchSnapshot();
   });
 });
+
+it('support typescript namespace syntax', () => {
+  expect(
+    transform(`
+    namespace NS {
+      export const A = () => {};
+      export function B() {};
+    }
+  `, { plugins: ['@babel/plugin-syntax-typescript'] }),
+  ).toMatchSnapshot();
+});
